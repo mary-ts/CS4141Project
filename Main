@@ -143,28 +143,45 @@ public class CS4141Project
    }
     
     
-   //NOT WORKING
-   public int move(String from, String to, boolean before){
+  public int move(String from, String to, boolean before){
          int indexOfFrom = index(from);
          int indexOfTo = index(to);
-         int indexOfBeforeTo = indexOfTo - indexOfFrom - 1;
+         String temp = tabs[indexOfFrom];
          if(!from.equalsIgnoreCase(to)){
                 if(before == true){
+                       if(indexOfFrom < indexOfTo){ 
+                       for(int i = indexOfFrom ;i < indexOfTo; i++){
+                          tabs[i] = tabs[i + 1];
+                       }
+                       tabs[indexOfTo - 1] = temp;
+                       return indexOfTo - 1;//if true
+                    }else{ 
+                        
+                       for(int i = indexOfFrom ;i > indexOfTo; i--){
+                          tabs[i] = tabs[i - 1];
+                       }
                        
-                       String temp = tabs[indexOfFrom];
-                       for(int i = indexOfFrom;i < tabs.length - 1; i++){
-                          tabs[i] = tabs[i + 1];
-                       }
-                       tabs[indexOfBeforeTo] = temp;
-                       return indexOfTo;//if true
-                } else{
-                   
-                       String temp = tabs[indexOfFrom];
-                       for(int i = indexOfFrom;i < tabs.length - 1; i++){
-                          tabs[i] = tabs[i + 1];
-                       }
                        tabs[indexOfTo] = temp;
-                       return indexOfTo;//if false
+                       return indexOfTo;//if true
+                        
+                    }
+                } else{
+                      if(indexOfFrom < indexOfTo){ 
+                       for(int i = indexOfFrom ;i < indexOfTo; i++){
+                          tabs[i] = tabs[i + 1];
+                       }
+                       tabs[indexOfTo - 1] = temp;
+                       return indexOfTo - 1;//if false
+                       
+                      } else { 
+                         
+                       for(int i = indexOfFrom ;i > indexOfTo; i--){
+                          tabs[i] = tabs[i - 1];
+                       }
+                       
+                       tabs[indexOfTo + 1] = temp;
+                       return indexOfTo + 1;//if false
+                    }
                 }
          }
          return -1; //if from = to
