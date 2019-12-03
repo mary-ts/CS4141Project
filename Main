@@ -213,7 +213,45 @@ public class CS4141Project
           
 }
   
-   
+public String move(int from, int to, boolean before){
+          String temp = tabs[from - 1];
+          tabs[to - 1] = tabs[to];
+          if(from != to && from < nextAvailable){
+                if(before == true){
+                     if(from < to){
+                       for(int i = from -1;i < to; i++){
+                          tabs[i] = tabs[i + 1];
+                       }
+                       tabs[to - 1] = temp;
+                       return temp; //if true
+                    } else {
+                        
+                       for(int i = from - 1;i > to; i--){
+                          tabs[i] = tabs[i - 1];
+                       }
+                       tabs[to] = temp;
+                       return temp; //if true
+                    }
+                } else{
+                     if(from < to){
+                       
+                       for(int i = from - 1;i < tabs.length - 1; i++){
+                          tabs[i] = tabs[i + 1];
+                       }
+                       tabs[to + 1] = temp;
+                       return temp; //if false
+                    } else {
+                       
+                       for(int i = from - 1;i < tabs.length - 1; i--){
+                          tabs[i] = tabs[i - 1];
+                       }
+                       tabs[to + 1] = temp;
+                       return temp; //if true
+                    }
+                }
+          }
+           return null; //if from = to
+   }
 
  
     
