@@ -41,10 +41,10 @@ public class CS4141Project
    }
    
    public int index(String sheetName){
-       for(int i=0;i < nextAvailable; i++){
+       for(int i=0;i < nextAvailable - 1; i++){
           if(!tabs[i].equals(null) && tabs[i].equalsIgnoreCase(sheetName)){
-              indexNumber = i;
-              return indexNumber;//if found
+              //return i + 1;//if found Sheet2 = 2
+              return i; //for Sheet2 = 1
           }
        }
        return -1;//if not found
@@ -59,32 +59,26 @@ public class CS4141Project
    public String sheetName(int index){
        for(int i=0;i < tabs.length; i++){
            if(i == index){
-               indexNumber = i;
-               return tabs[i-1]; //if found
+               return tabs[i - 1]; //if found for 3 = sheet3
+               //or return tabs[i]; for 3 = Sheet4
            }
         }
        return null; //if not found
    }
-   //CASE SENSITIVE && ALLOWS DUPLICATES && INDEX
+   //ALLOWS DUPLICATES && index(currentName) != -1 && index(newName) == -1
    public int rename(String currentName, String newName){
        for(int i=0;i < tabs.length; i++){
            String temp = "";
            if(tabs[i].equalsIgnoreCase(currentName)){
-               temp = tabs[i].replace(currentName, newName);
+               temp = tabs[i].replace(tabs[i], newName);
                tabs[i] = temp;
-               return i;
+               return i;// Sheet2 = 1
+               //or return i + 1; for Sheets2 = 2
            }
        }
        return -1; 
    }
    
-   public int shiftRight(int index) {
-        for(i = index;i < tabs.length-1; i++) {
-            tabs[i] = tabs[i - 1];
-        }
-        return 0; 
-   }
-    
    public int shiftLeft(int index) {
         for(i = index;i < tabs.length - 1; i++) {
             tabs[i] = tabs[i + 1];
@@ -143,7 +137,7 @@ public class CS4141Project
    }
     
     
-  public int move(String from, String to, boolean before){
+   public int move(String from, String to, boolean before){
          int indexOfFrom = index(from);
          int indexOfTo = index(to);
          String temp = tabs[indexOfFrom];
@@ -154,7 +148,7 @@ public class CS4141Project
                           tabs[i] = tabs[i + 1];
                        }
                        tabs[indexOfTo - 1] = temp;
-                       return indexOfTo - 1;//if true
+                       return indexOfTo - 1;//if true 
                     }else{ 
                         
                        for(int i = indexOfFrom ;i > indexOfTo; i--){
@@ -162,7 +156,7 @@ public class CS4141Project
                        }
                        
                        tabs[indexOfTo] = temp;
-                       return indexOfTo;//if true
+                       return indexOfTo;//if true 
                         
                     }
                 } else{
@@ -170,8 +164,8 @@ public class CS4141Project
                        for(int i = indexOfFrom ;i < indexOfTo; i++){
                           tabs[i] = tabs[i + 1];
                        }
-                       tabs[indexOfTo - 1] = temp;
-                       return indexOfTo - 1;//if false
+                       tabs[indexOfTo] = temp;
+                       return indexOfTo;//if false
                        
                       } else { 
                          
@@ -187,39 +181,21 @@ public class CS4141Project
          return -1; //if from = to
    }  
    
+   //not working
+   //public String move(int from, int to, boolean before){
+       
+   //    move(tabs[from], tabs[to], before);
+   //    return tabs[from];
+   //}
+   
    
    public String move(int from, int to, boolean before){
-          if(from != to && from < nextAvailable){
-                if(before == true){
-                    
-                       String temp = tabs[from - 1];
-                       for(int i = from - 1;i < tabs.length - 1; i++){
-                          tabs[i] = tabs[i + 1];
-                       }
-                       tabs[to - 1] = temp;
-                       return temp; //if true
-                } else{
-                    
-                       String temp = tabs[from - 1];
-                       for(int i = from - 1;i < tabs.length - 1; i++){
-                          tabs[i] = tabs[i + 1];
-                       }
-                       tabs[to + 1] = temp;
-                       return temp; //if false
-                }
-          }
-           return null; //if from = to
-   }
-          
-}
-  
-public String move(int from, int to, boolean before){
           String temp = tabs[from - 1];
-          tabs[to - 1] = tabs[to];
+          
           if(from != to && from < nextAvailable){
                 if(before == true){
                      if(from < to){
-                       for(int i = from -1;i < to; i++){
+                       for(int i = from - 1;i < to; i++){
                           tabs[i] = tabs[i + 1];
                        }
                        tabs[to - 1] = temp;
@@ -235,23 +211,27 @@ public String move(int from, int to, boolean before){
                 } else{
                      if(from < to){
                        
-                       for(int i = from - 1;i < tabs.length - 1; i++){
+                       for(int i = from;i < to; i++){
                           tabs[i] = tabs[i + 1];
                        }
                        tabs[to + 1] = temp;
                        return temp; //if false
                     } else {
                        
-                       for(int i = from - 1;i < tabs.length - 1; i--){
+                       for(int i = from;i > to; i--){
                           tabs[i] = tabs[i - 1];
                        }
                        tabs[to + 1] = temp;
-                       return temp; //if true
+                       return temp; //if false
                     }
                 }
           }
            return null; //if from = to
    }
+   
+}
+  
+   
 
  
     
