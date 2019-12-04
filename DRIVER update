@@ -1,0 +1,38 @@
+public class Driver1
+{
+    public static void main(String[] args) {
+        System.out.println("CS4141 Project");
+        //need two instances at the least, then Output information.
+        CS4141Project instance = new CS4141Project();
+        
+        
+        instance.init();
+        instance.Display(); 
+        
+        System.out.print("Index of Sheet3 = ");
+        instance.index("Sheet3");
+        //instance.Display();
+        
+        instance.add();
+        instance.Display();
+        
+        instance.add();
+        instance.Display();
+        
+        System.out.print("Length = ");
+        instance.length();
+        //instance.Display();
+        
+        instance.remove(2);
+        instance.Display();
+        
+        //instance.move();
+        //instance.Display();
+        
+        instance.moveToEnd("Sheet3");
+        instance.Display();
+        
+        instance.rename("Sheet1","JAVA");
+        instance.Display();
+    }
+}
