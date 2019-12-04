@@ -41,3 +41,96 @@ public class Driver2
         instance.Display();
     }
 }
+public class Driver2
+{
+    public static void main(String[] args) {
+        System.out.println("CS4141 Project");
+        //need two instances at the least, then Output information.
+        CS4141Project instance = new CS4141Project();
+        
+        
+        instance.init();
+        instance.Display(); 
+                        
+        instance.add();
+        instance.Display();
+                        
+        System.out.print("Length = ");
+        instance.length();       
+        
+        instance.remove(1);
+        instance.Display();
+        
+        instance.add();
+        instance.Display();
+                         
+       
+        instance.move("Sheet5", "Sheet3", false);
+        instance.Display();
+       
+        instance.moveToEnd(3);
+        instance.Display();
+        
+        System.out.print("Index of Sheet5 = ");
+        instance.index("Sheet5");
+        
+        instance.rename("Sheet4","YouNeedSleep");
+        instance.Display();
+        
+        instance.move(3,5, true);
+        instance.Display();
+        
+        instance.moveToEnd("Sheet1");
+        instance.Display(); 
+        
+        instance.remove("Sheet5");
+        instance.Display();
+    }
+}
+public class Driver1
+{
+    public static void main(String[] args) {
+        System.out.println("CS4141 Project");
+        //need two instances at the least, then Output information.
+        CS4141Project instance = new CS4141Project();
+        
+        
+        instance.init();
+        instance.Display(); 
+        
+        System.out.print("Index of Sheet3 = ");
+        instance.index("Sheet3");
+        //instance.Display();
+        
+        instance.add();
+        instance.Display();
+        
+        instance.add();
+        instance.Display();
+        
+        System.out.print("Length = ");
+        instance.length();
+        //instance.Display();
+        
+        instance.remove(2);
+        instance.Display();
+        
+        instance.move("Sheet1", "Sheet4", false);
+        instance.Display();
+       
+        instance.moveToEnd(1);
+        instance.Display();
+        
+        instance.rename("Sheet1","JAVA");
+        instance.Display();
+        
+        instance.move(1,3, true);
+        instance.Display();
+        
+        instance.moveToEnd("Sheet4");
+        instance.Display(); 
+        
+        instance.remove("Sheet4");
+        instance.Display();
+    }
+}
